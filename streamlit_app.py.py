@@ -12,14 +12,39 @@ model = joblib.load('housing_model.pkl')
 
 st.title("House Price Prediction App")
 
-area = st.number_input("Area", value=5000)
-bedrooms = st.number_input("Bedrooms", value=3)
-bathrooms = st.number_input("Bathrooms", value=2)
-stories = st.number_input("Stories", value=2)
-parking = st.number_input("Parking", value=1)
+area = st.number_input("Area", min_value=1, value=5000)
+
+bedrooms = st.number_input(
+    "Bedrooms",
+    min_value=1,
+    value=3
+)
+
+bathrooms = st.number_input(
+    "Bathrooms",
+    min_value=1,
+    value=2
+)
+
+stories = st.number_input(
+    "Stories",
+    min_value=1,
+    value=2
+)
+
+parking = st.number_input(
+    "Parking",
+    min_value=0,
+    value=1
+)
 
 total_rooms = bedrooms + bathrooms
-area_per_bedroom = area / bedrooms
+
+if bedrooms > 0:
+    area_per_bedroom = area / bedrooms
+else:
+    area_per_bedroom = 0
+
 has_parking = 1 if parking > 0 else 0
 luxury_home = 0
 
@@ -58,7 +83,6 @@ if st.button("Predict Price"):
 
     st.success(f"Predicted House Price: ₦{prediction[0]:,.2f}")
     
-
 # In[ ]:
 
 
