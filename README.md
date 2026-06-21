@@ -1,88 +1,236 @@
 # Machine-Learning-Deployment-Project-week-7-
 
-# 🏠 House Price Prediction App
+# House Price Prediction System
 
-## Overview
+## Project Description
 
-This project is a Machine Learning-powered House Price Prediction application developed using Python and Streamlit. The application enables users to input housing characteristics and receive an estimated house price based on a trained machine learning model.
+This project is a Machine Learning-based House Price Prediction System developed as part of the AnalystLab Africa Data Science Internship Program (Week 7: Model Deployment & Real-World Application).
 
-The project demonstrates the complete machine learning workflow, including data preprocessing, model training, evaluation and deployment through an interactive web application.
+The system predicts house prices based on property characteristics such as area, number of bedrooms, bathrooms, stories, parking availability, location preferences and other housing features.
 
----
-
-## Problem Statement
-
-Estimating the value of a house can be difficult because many factors influence property prices. Buyers, sellers and real estate professionals often need a quick way to estimate the value of a property based on its features.
-
-This project addresses that challenge by using machine learning to predict house prices from key housing characteristics.
+The trained machine learning model was saved using Joblib and deployed through a Flask API and a Streamlit web application, allowing users to generate house price predictions without retraining the model.
 
 ---
 
-## Features
+# Problem Statement
 
-* Interactive web interface built with Streamlit
-* Real-time house price prediction
-* Easy-to-use input fields
-* Machine learning-based estimation
-* Fast and lightweight application
+Property valuation is an important aspect of the real estate industry. Estimating house prices manually can be time-consuming and may lead to inconsistencies.
+
+The goal of this project is to build a machine learning model capable of predicting house prices based on housing characteristics and deploy the model so users can interact with it through an API and a web application.
 
 ---
 
-## Technologies Used
+# Dataset
+
+Dataset: Housing Prices Dataset
+
+Target Variable:
+
+* Price
+
+Features:
+
+* Area
+* Bedrooms
+* Bathrooms
+* Stories
+* Parking
+* Main Road Access
+* Guest Room
+* Basement
+* Hot Water Heating
+* Air Conditioning
+* Preferred Area
+* Furnishing Status
+
+Engineered Features:
+
+* Total Rooms
+* Area Per Bedroom
+* Parking Availability Indicator
+
+---
+
+# Machine Learning Model Used
+
+Model:
+
+* Random Forest Regressor
+
+
+# Technologies Used
 
 * Python
 * Pandas
 * NumPy
 * Scikit-learn
-* Streamlit
 * Joblib
+* Flask
+* Streamlit
+* Matplotlib
+* Seaborn
+* Jupyter Notebook
 
 ---
 
-## Development Process
+# Project Structure
 
-### 1. Data Collection
+```text
+House-Price-Prediction/
+│
+├── housing_model.pkl
+├── Check the saved traibed model
+|──app.py
+|──test_api.py
+├── streamlit_app.py.py
+├── README.md
 
-A housing dataset containing property characteristics and corresponding prices was used for training the model.
-
-### 2. Data Preprocessing
-
-The dataset was cleaned and prepared by:
-
-* Handling missing values
-* Selecting relevant features
-* Formatting data for model training
-
-### 3. Model Training
-
-A machine learning regression model was trained to learn the relationship between house features and house prices.
-
-### 4. Model Evaluation
-
-The model was evaluated to determine how accurately it could predict housing prices on unseen data.
-
-### 5. Deployment
-
-The trained model was deployed using Streamlit, allowing users to interact with the model through a web interface.
+```
 
 ---
 
+# API Endpoints
 
-## Key Lessons Learned
+## Home Endpoint
 
-* Data quality significantly impacts model performance.
-* Proper feature selection improves prediction accuracy.
-* Machine learning deployment is an important step in making models accessible to users.
-* Streamlit provides a simple and effective way to deploy data science projects.
+URL:
 
+```text
+/
+```
 
+Method:
 
-## Author
+```text
+GET
+```
 
-**Shakirat Dabiri**
+Response:
 
-Aspiring Data Scientist | Machine Learning Enthusiast | Environmental Engineer
+```text
+Housing Price Prediction API is running!
+```
 
-This project was developed as part of my journey in data science and machine learning, focusing on building practical solutions and deploying predictive models.
+---
 
+## Prediction Endpoint
+
+URL:
+
+```text
+/predict
+```
+
+Method:
+
+```text
+POST
+```
+
+Description:
+
+Accepts housing information and returns a predicted house price.
+
+---
+
+# Input Format
+
+Example JSON Request:
+
+```json
+{
+  "area": 7420,
+  "bedrooms": 4,
+  "bathrooms": 2,
+  "stories": 3,
+  "parking": 2,
+  "total_rooms": 6,
+  "area_per_bedroom": 1855,
+  "has_parking": 1,
+  "luxury_home": 0,
+  "mainroad_yes": 1,
+  "guestroom_yes": 0,
+  "basement_yes": 0,
+  "hotwaterheating_yes": 0,
+  "airconditioning_yes": 1,
+  "prefarea_yes": 1,
+  "furnishingstatus_semi-furnished": 0,
+  "furnishingstatus_unfurnished": 0
 }
+```
+
+---
+
+# Output Format
+
+Example Response:
+
+```json
+{
+  "Predicted Price": 8891042.06
+}
+```
+
+---
+
+
+# How to Run the Flask API
+
+Run:
+
+```bash
+python app.py
+```
+
+API will start on:
+
+```text
+http://127.0.0.1:5000
+```
+
+---
+
+# How to Run the Streamlit Application
+
+Run:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+Application will open in your browser at:
+
+```text
+http://localhost:8501
+```
+
+---
+
+# Project Workflow
+
+1. Save week 6 model
+2. Model Serialization using Joblib
+3. API Development using Flask
+4. User Interface Development using Streamlit
+5. Deployment and Testing
+
+---
+
+# Key Lessons Learned
+
+* Feature engineering can improve model performance by creating meaningful predictors from existing variables.
+* Cross-validation helps evaluate model robustness and reduce overfitting.
+* Hyperparameter tuning does not always guarantee significant performance improvements.
+* Data leakage should be avoided when creating features.
+* Model deployment transforms a machine learning model into a real-world application that users can interact with.
+
+---
+
+# Author
+
+Shakirat Dabiri
+
+AnalystLab Africa Data Science Internship Program – Week 7
+
+Machine Learning | Data Science | Model Deployment | Streamlit | Flask
+
