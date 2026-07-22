@@ -79,7 +79,7 @@ Model:
 House-Price-Prediction/
 │
 ├── housing_model.pkl
-├── Check the saved traibed model
+├── Check the saved trained model
 |──app.py
 |──test_api.py
 ├── streamlit_app.py.py
